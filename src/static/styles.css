@@ -15,9 +15,13 @@ body {
   background-color: #f5f5f5;
 }
 
-header {
-  text-align: center;
-  padding: 20px 0;
+header.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  padding: 20px 24px;
   margin-bottom: 30px;
   background-color: #1a237e;
   color: white;
@@ -35,12 +39,6 @@ main {
   justify-content: center;
 }
 
-@media (min-width: 768px) {
-  main {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
 section {
   background-color: white;
   padding: 20px;
@@ -55,6 +53,11 @@ section h3 {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   color: #1a237e;
+}
+
+.teacher-status {
+  margin-bottom: 18px;
+  color: #444;
 }
 
 .activity-card {
@@ -74,7 +77,6 @@ section h3 {
   margin-bottom: 8px;
 }
 
-/* New styles for participants section */
 .participants-container {
   margin-top: 15px;
   padding-top: 12px;
@@ -94,15 +96,9 @@ section h3 {
 
 .participants-section ul li {
   padding: 4px 0;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-/* Remove the bullet point pseudo-element */
-.participants-section ul li::before {
-  display: none;
 }
 
 .participant-email {
@@ -117,7 +113,6 @@ section h3 {
   cursor: pointer;
   font-size: 14px;
   padding: 2px 5px;
-  transition: all 0.2s;
   border-radius: 3px;
 }
 
@@ -160,8 +155,53 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: #3949ab;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.user-button {
+  background-color: white;
+  color: #1a237e;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.user-button:hover {
+  background-color: #eef2ff;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  width: min(100%, 420px);
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  color: #333;
+  font-size: 28px;
+  line-height: 1;
+  padding: 0 6px;
 }
 
 .message {
@@ -197,4 +237,10 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+@media (max-width: 640px) {
+  header.top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
